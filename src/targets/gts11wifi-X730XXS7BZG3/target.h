@@ -124,7 +124,7 @@
 #define SLIDE_NFULNL_LOGGER_OBJECT_OFF 0x02382278ULL /* nfulnl_logger */
 #define SLIDE_RB_PARENT_TYPE_RESTORE 1ULL
 /* TODO: random_table boot_id data ptr - need to find via Image scan, using psq value as placeholder */
-#define SLIDE_RANDOM_TABLE_BOOT_ID_DATA_PTR_OFF 0x024b92c0ULL /* random_table 0x024b92a8 + 0x18? data field at +8, second entry? TO BE VERIFIED */
+#define SLIDE_RANDOM_TABLE_BOOT_ID_DATA_PTR_OFF 0x024b93b0ULL /* random_table 0x024b92a8 + 0x18? data field at +8, second entry? TO BE VERIFIED */
 #define SLIDE_INIT_TASK_OFF INIT_TASK_OFF
 #define SLIDE_ROOT_TASK_GROUP_OFF ROOT_TASK_GROUP_OFF
 #define SLIDE_SYSCTL_BOOTID_OFF 0x026c2238ULL
